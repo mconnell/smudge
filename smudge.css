@@ -1,0 +1,54 @@
+body{
+  margin: 0;
+  font-size: 100%;
+  background-image: url('images/bg_white.jpg');
+  font-family: 'Droid Sans', arial, serif;
+}
+
+h1, h2, h3{
+  margin: 0;
+  padding: 0;
+}
+
+#top{
+  position: relative;
+  background-image: url('images/header_bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #222;
+  height: 6px;
+}
+
+#header_wrapper{
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #eee;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#header, #main, #footer{
+  width: 960px;
+  margin: 0 auto;
+}
+
+#header{
+}
+
+#header h1{
+  font-size: 1.2em;
+}
+
+#header h1 a{
+  display: block;
+  padding: 0.4em 0;
+  color: #464F4C;
+  text-decoration: none;
+  text-shadow: 0px 2px 3px #fff;
+}
+
+#main_wrapper{
+  border-top: 1px solid #fff;
+}
+
+#main h2{
+  margin-top: 1em;
+}
