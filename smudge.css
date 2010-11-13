@@ -58,3 +58,15 @@ hr{
 #main h2{
   margin-top: 1em;
 }
+
+#main .box{
+  margin: 1em 0;
+  border: 1px solid #eee;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#footer{
+  font-size: 0.8em;
+  color: #bbb;
+  text-shadow: -1px 1px 1px #fff;
+}
