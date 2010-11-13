@@ -17,7 +17,7 @@ Sketchpad = {
       start_y = event.pageY - offset.top;
       path    = [["M", start_x, start_y],["L", start_x, start_y]];
       shape   = Sketchpad.paper.path(path);
-      shape.attr({'stroke-width' : 2, 'opacity': 0.1});
+      shape.attr({'stroke-width' : 2, 'opacity': 0.2});
     });
 
     jQuery('#paper').mousemove(function(event){
