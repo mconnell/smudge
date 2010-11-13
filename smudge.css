@@ -10,6 +10,12 @@ h1, h2, h3{
   padding: 0;
 }
 
+hr{
+  border: none;
+  border-top: 3px solid #F5F5F5;
+  border-bottom: 1px solid #fff;
+}
+
 #top{
   position: relative;
   background-image: url('images/header_bg.jpg');
