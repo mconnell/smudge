@@ -1,7 +1,7 @@
 body{
   margin: 0;
   font-size: 100%;
-  background-image: url('images/bg_white.jpg');
+  background-image: url('/images/bg_white.jpg');
   font-family: 'Droid Sans', arial, serif;
 }
 
@@ -18,11 +18,12 @@ hr{
 
 #top{
   position: relative;
-  background-image: url('images/header_bg.jpg');
+  background-image: url('/images/header_bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
   border-bottom: 1px solid #222;
   height: 6px;
+  background-color: #333736;
 }
 
 #header_wrapper{
