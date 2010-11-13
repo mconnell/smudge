@@ -71,3 +71,8 @@ hr{
   color: #bbb;
   text-shadow: -1px 1px 1px #fff;
 }
+
+/* Game specific css */
+.sketchpad{
+  cursor: crosshair;
+}
