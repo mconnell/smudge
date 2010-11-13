@@ -3,6 +3,8 @@ body{
   font-size: 100%;
   background-image: url('/images/bg_white.jpg');
   font-family: 'Droid Sans', arial, serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
 
 h1, h2, h3{

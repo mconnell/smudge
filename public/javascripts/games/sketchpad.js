@@ -27,7 +27,7 @@ Sketchpad = {
       };
     });
 
-    jQuery('#paper').mouseup(function (event) {
+    jQuery(document).mouseup(function (event){
       moving = false;
     });
   },
