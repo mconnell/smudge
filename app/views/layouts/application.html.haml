@@ -1,0 +1,9 @@
+!!! 5
+%html
+  %head
+    %title Smudge
+    = stylesheet_link_tag 'smudge'
+    = javascript_include_tag 'smudge'
+    = csrf_meta_tag
+  %body
+    = yield
