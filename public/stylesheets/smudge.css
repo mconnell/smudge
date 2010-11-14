@@ -78,4 +78,13 @@ hr{
 /* Game specific css */
 .sketchpad{
   cursor: crosshair;
+  position: relative;
+}
+
+.sketchpad #countdown{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.2em;
+  color: #794F3F;
 }

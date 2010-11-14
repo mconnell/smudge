@@ -4,6 +4,7 @@ require 'em_channel_patch'
 
 EventMachine.run do
   @lobbies = {}
+  @count = 180
 
   Lobby = Struct.new(:channel, :data)
 
@@ -18,12 +19,20 @@ EventMachine.run do
     end
   end
 
+  EventMachine::PeriodicTimer.new(1) do
+    @count -= 1 if @count > 0
+  end
+
   EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 8080) do |ws|
     ws.onopen do
       lobby = find_or_create_lobby(ws.request['Path'].split('/').last)
       socket_id = lobby.channel.subscribe{|msg| ws.send msg}
       puts "open #{lobby.channel} #{socket_id}"
 
+      # set countdown timer
+      ws.send ['startTimer', @count].to_json
+
+      # load in existing paths
       lobby.data.each do |data|
         ws.send ['draw', data].to_json
       end

@@ -38,12 +38,30 @@ Sketchpad = {
   rx: {
     clear: function(){
       Sketchpad.paper.clear();
+      Sketchpad.countdown.count = 180;
       return true;
     },
     draw: function(obj){
       var shape = Sketchpad.paper.path(obj);
       shape.attr({'stroke-width' : 2, 'opacity': 0.2});
       return shape;
+    }
+  },
+
+  countdown: {
+    count: 180,
+    start: function(count){
+      if(count > 0){ Sketchpad.countdown.count = count };
+      setInterval("Sketchpad.countdown.decrement()", 1000);
+    },
+    decrement: function(){
+      if(Sketchpad.countdown.count > 0){
+        Sketchpad.countdown.count -= 1;
+        Sketchpad.countdown.display();
+      };
+    },
+    display: function(){
+      jQuery('#countdown').text(Sketchpad.countdown.count);
     }
   }
 };
@@ -69,6 +87,9 @@ jQuery(document).ready(function(){
         break;
       case 'clear':
         Sketchpad.rx.clear();
+        break;
+      case 'startTimer':
+        Sketchpad.countdown.start(json[1]);
         break;
     };
   };
