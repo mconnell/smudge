@@ -1,5 +1,10 @@
 Smudge::Application.routes.draw do
-  root :to => 'games#sketchpad'
+  root :to => redirect('/games/sketchpad')
+
+  resources :games do
+    get :sketchpad, :on => :collection
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
