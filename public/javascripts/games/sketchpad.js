@@ -3,7 +3,7 @@
 
 Sketchpad = {
   initialise: function(){
-    Sketchpad.paper  = Raphael('paper', 960, 450);
+    Sketchpad.paper = Raphael('paper', 960, 450);
     Sketchpad.bindDrawingTool();
   },
 
