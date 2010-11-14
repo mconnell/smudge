@@ -27,19 +27,22 @@ Sketchpad = {
       };
     });
 
-    jQuery(document).mouseup(function (event){
-      moving = false;
+    jQuery(document).mouseup(function(event){
+      if(moving){
+        web_socket.trigger('draw', shape.attrs['path']);
+        moving = false;
+      };
     });
   },
 
   rx: {
     clear: function(){
-      paper.clear();
+      Sketchpad.paper.clear();
       return true;
     },
-    draw: function(){
-      var shape = Sketchpad.canvas.path(obj.paths);
-      shape.attr({'stroke-width' : 2, 'opacity': 0.8});
+    draw: function(obj){
+      var shape = Sketchpad.paper.path(obj);
+      shape.attr({'stroke-width' : 2, 'opacity': 0.2});
       return shape;
     }
   }
@@ -49,4 +52,25 @@ Sketchpad = {
 
 jQuery(document).ready(function(){
   Sketchpad.initialise();
+
+  web_socket = new WebSocket("ws://markbookair.local:8080/sketchpad/1");
+
+  web_socket.trigger = function(event, data){
+    var payload = JSON.stringify([event, data]);
+    web_socket.send(payload);
+  };
+
+  web_socket.onmessage = function(evt) {
+    json = JSON.parse(evt.data);
+
+    switch(json[0]){
+      case 'draw':
+        Sketchpad.rx.draw(json[1]);
+        break;
+      case 'clear':
+        Sketchpad.rx.clear();
+        break;
+    };
+  };
+
 });
