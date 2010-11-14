@@ -16,6 +16,7 @@ EventMachine.run do
     @lobbies.each_value do |lobby|
       lobby.data = []
       lobby.channel.push ['clear', {}].to_json
+      @count = 180
     end
   end
 
