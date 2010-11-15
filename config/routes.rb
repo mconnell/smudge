@@ -1,5 +1,5 @@
 Smudge::Application.routes.draw do
-  root :to => redirect('/games/sketchpad')
+  root :to => redirect('/games')
 
   resources :games do
     get :sketchpad, :on => :collection

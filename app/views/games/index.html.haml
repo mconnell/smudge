@@ -1,0 +1,16 @@
+= like_buttons
+%h2 Games
+
+.game.box
+  %h3= link_to 'Letters', letters_games_path
+  = link_to image_tag('letters.png'), letters_games_path
+  %p.desc
+    Compete against other players to create words.
+    = link_to 'Play Letters.', letters_games_path
+
+.game.box
+  %h3= link_to 'Sketchpad', sketchpad_games_path
+  = link_to image_tag('sketchpad.png'), sketchpad_games_path
+  %p.desc
+    3 minutes. Multiple players. Draw whatever you like.
+    = link_to 'Play Sketchpad.', sketchpad_games_path

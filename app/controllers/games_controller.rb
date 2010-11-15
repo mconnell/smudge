@@ -1,5 +1,9 @@
 class GamesController < ApplicationController
 
+  def index
+    @title = "Games"
+  end
+
   def letters
     @title = "Letters"
   end
