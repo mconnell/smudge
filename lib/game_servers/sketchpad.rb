@@ -33,6 +33,9 @@ EventMachine.run do
       # set countdown timer
       ws.send ['startTimer', @count].to_json
 
+      # player count
+      lobby.channel.push ['playerCount', lobby.channel.subs].to_json
+
       # load in existing paths
       lobby.data.each do |data|
         ws.send ['draw', data].to_json
@@ -49,6 +52,7 @@ EventMachine.run do
 
       ws.onclose do
         lobby.channel.unsubscribe(socket_id)
+        lobby.channel.push ['playerCount', lobby.channel.subs].to_json
         puts "close #{lobby.channel} #{socket_id}"
       end
     end

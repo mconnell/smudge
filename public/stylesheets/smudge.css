@@ -75,10 +75,25 @@ hr{
   text-shadow: -1px 1px 1px #fff;
 }
 
+.metric{
+  margin: 1em 0;
+  padding: 0.3em 0.5em;
+  text-align: right;
+  font-size: 0.8em;
+  display: inline-block;
+  background-color: rgba(124, 83, 63, 0.2);
+  margin-right: 0.5em;
+}
+
+.metric div{
+  display: inline-block;
+}
+
 /* Game specific css */
-.sketchpad{
+#main .box.sketchpad{
   cursor: crosshair;
   position: relative;
+  margin-top: 0;
 }
 
 .sketchpad #countdown{

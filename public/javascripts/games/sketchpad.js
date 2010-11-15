@@ -66,6 +66,10 @@ Sketchpad = {
       if(seconds < 10){ seconds = '0'+seconds }
       jQuery('#countdown').text(minutes+':'+seconds);
     }
+  },
+
+  updatePlayerCount: function(value){
+    jQuery('#player_count').text(value);
   }
 };
 
@@ -94,6 +98,8 @@ jQuery(document).ready(function(){
       case 'startTimer':
         Sketchpad.countdown.start(json[1]);
         break;
+      case 'playerCount':
+        Sketchpad.updatePlayerCount(json[1]);
     };
   };
 

@@ -10,5 +10,9 @@ module EventMachine
     end
     alias << push_to_others
 
+    def subs
+      @subs.size
+    end
+
   end
 end
