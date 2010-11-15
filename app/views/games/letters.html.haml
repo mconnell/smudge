@@ -1,0 +1,9 @@
+= content_for :additional_javascript do
+  = javascript_include_tag 'swfobject', 'FABridge', 'web_socket', 'raphael', 'games/letters'
+
+= like_buttons
+%h2 Letters
+.metric
+  Number of players:
+  #player_count ?
+#paper.box.letters

@@ -3,6 +3,7 @@ Smudge::Application.routes.draw do
 
   resources :games do
     get :sketchpad, :on => :collection
+    get :letters,   :on => :collection
   end
 
   # The priority is based upon order of creation:

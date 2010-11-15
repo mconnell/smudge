@@ -100,6 +100,7 @@ jQuery(document).ready(function(){
         break;
       case 'playerCount':
         Sketchpad.updatePlayerCount(json[1]);
+        break;
     };
   };
 

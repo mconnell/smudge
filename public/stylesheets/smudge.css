@@ -103,3 +103,7 @@ hr{
   margin: 0.2em;
   color: #794F3F;
 }
+
+#main .box.letters{
+  margin-top: 0;
+}
