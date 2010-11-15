@@ -61,7 +61,10 @@ Sketchpad = {
       };
     },
     display: function(){
-      jQuery('#countdown').text(Sketchpad.countdown.count);
+      var minutes = Math.floor(Sketchpad.countdown.count/60);
+      var seconds = Sketchpad.countdown.count % 60;
+      if(seconds < 10){ seconds = '0'+seconds }
+      jQuery('#countdown').text(minutes+':'+seconds);
     }
   }
 };

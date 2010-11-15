@@ -12,7 +12,7 @@ EventMachine.run do
     @lobbies[channel_id] ||= Lobby.new(EM::Channel.new, [])
   end
 
-  EventMachine::PeriodicTimer.new(180) do
+  EventMachine::PeriodicTimer.new(181) do
     @lobbies.each_value do |lobby|
       lobby.data = []
       lobby.channel.push ['clear', {}].to_json
