@@ -29,8 +29,8 @@ EventMachine.run do
         event, data = JSON.parse(msg)
         case event
           when 'move'
-            lobby.letters[data[0]].x = data[1]
-            lobby.letters[data[0]].y = data[2]
+            lobby.letters[data[0]].x = data[1] if (data[1] >= 0 || data[1] <= 930)
+            lobby.letters[data[0]].y = data[2] if (data[2] >= 0 || data[2] <= 445)
 
             lobby.channel.push_to_others(socket_id, [event, data].to_json)
         end

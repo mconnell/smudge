@@ -51,7 +51,14 @@ var Letters = {
   },
 
   dragMove : function(dx, dy){
-    this.attr({x: this.x + dx, y: this.y + dy});
+    var new_x = this.x + dx;
+    var new_y = this.y + dy;
+    if(new_x < 0){new_x = 0}
+    if(new_x > 930){new_x = 930}
+    if(new_y < 0){new_y = 0}
+    if(new_y > 445){new_y = 445}
+
+    this.attr({x: new_x, y: new_y});
     this.paper.safari();
     web_socket.trigger('move', [this.id, this.attr('x'), this.attr('y')]);
   },
@@ -71,7 +78,6 @@ var Letters = {
   rx: {
     update: function(image_id, x, y){
       var letter = Letters.images[image_id];
-      // var path = "M"+letter.attr('x')+" "+letter.attr('y')+"L"+x+" "+y;
       letter.attr({'x': x, 'y': y});
     }
   }
