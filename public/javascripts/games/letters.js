@@ -46,6 +46,7 @@ var Letters = {
   createCharacter : function(character, dimensions){
     var letter = Letters.paper.image('/images/letters/'+character+'.png', 20, 20, dimensions.width, dimensions.height);
     letter.drag(Letters.dragMove, Letters.dragStart, Letters.dragUp);
+    letter.attr('cursor', 'move');
     Letters.images.push(letter);
     return letter;
   },
