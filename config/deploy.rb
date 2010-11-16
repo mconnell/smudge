@@ -27,16 +27,17 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
-end
 
-after "deploy:update_code" do
-  # run "ln -sf #{shared_path}/database.yml #{release_path}/config/database.yml"
-  # run "ln -sf #{shared_path}/assets #{release_path}/public/assets"
-
-  Dir["#{current_path}/public/javascripts/**/*.js"].each do |js_file|
-    run "yui-compressor --type js #{js_file} -o #{js_file}"
-  end
-  Dir["#{current_path}/public/stylesheets/**/*.css"].each do |css_file|
-    run "yui-compressor --type css #{css_file} -o #{css_file}"
+  desc "Minify javascript and css files."
+  task :minify_public_files do
+    Dir.glob("public/javascripts/**/*.js").each do |js_file|
+      path = "#{release_path}/#{js_file}"
+      run "yui-compressor --type js #{path} -o #{path}"
+    end
+    Dir.glob("public/stylesheets/**/*.css").each do |css_file|
+      path = "#{release_path}/#{css_file}"
+      run "yui-compressor --type css #{path} -o #{path}"
+    end
   end
 end
+after 'deploy:update_code', 'deploy:minify_public_files'
