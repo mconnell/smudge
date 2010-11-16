@@ -78,7 +78,7 @@ Sketchpad = {
 jQuery(document).ready(function(){
   Sketchpad.initialise();
 
-  web_socket = new WebSocket("ws://markbookair.local:8080/sketchpad/1");
+  web_socket = new WebSocket("ws://smudge.it:8080/sketchpad/1");
 
   web_socket.trigger = function(event, data){
     var payload = JSON.stringify([event, data]);
