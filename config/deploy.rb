@@ -1,22 +1,42 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'bundler/capistrano'
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :application, "smudge"
+set :repository,  "git@github.com:mconnell/smudge.git"
+set :user, 'smudge'
+set :scm, :git
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :deploy_to, "/home/smudge/apps/#{application}"
+set :rails_env, "production"
 
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
+role :web, "smudge.it"                   # Your HTTP server, Apache/etc
+role :app, "smudge.it"                   # This may be the same as your `Web` server
+role :db,  "smudge.it", :primary => true # This is where Rails migrations will run
 
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+set :branch, :master
+set :deploy_via, :remote_cache
+
+set :use_sudo, false
+set :port, 38721
+
+ssh_options[:forward_agent] = true
+default_run_options[:pty] = true
+
+namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+end
+
+after "deploy:update_code" do
+  # run "ln -sf #{shared_path}/database.yml #{release_path}/config/database.yml"
+  # run "ln -sf #{shared_path}/assets #{release_path}/public/assets"
+
+  Dir["#{current_path}/public/javascripts/**/*.js"].each do |js_file|
+    run "yui-compressor --type js #{js_file} -o #{js_file}"
+  end
+  Dir["#{current_path}/public/stylesheets/**/*.css"].each do |css_file|
+    run "yui-compressor --type css #{css_file} -o #{css_file}"
+  end
+end
